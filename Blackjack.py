@@ -45,4 +45,18 @@ def display_hands(player_hand, dealer_hand, reveal_dealer_card=False):
         dealer_hand_str = "Dealer's hand: " + dealer_hand[0] + ", [hidden]"
         print(dealer_hand_str)
 
+def player_turn(deck, player_hand):
+    while True:
+        choice = input("Would you like to (H)it or (S)tand? ").upper()
+        if choice == 'H':   
+            player_hand.append(deck.pop(random.randint(0, len(deck) - 1)))
+            print("Player hits and receives: " + player_hand[-1])
+            display_hands(player_hand, [], True)
+            if calculate_hand_value(player_hand) > 21:
+                print("Player busts!")
+                return True
+            elif choice == 'S':
+                print("Player stands.")
+                return False
+
 
