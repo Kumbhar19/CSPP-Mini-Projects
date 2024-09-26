@@ -69,5 +69,7 @@ def dealer_turn(deck, dealer_hand):
         print("Dealer busts!")
         return True
     return False
+def is_bust(hand):
+    return calculate_hand_value(hand) > 21
 
 
