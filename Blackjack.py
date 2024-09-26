@@ -58,5 +58,16 @@ def player_turn(deck, player_hand):
             elif choice == 'S':
                 print("Player stands.")
                 return False
+def dealer_turn(deck, dealer_hand):
+    print("Dealer's turn.")
+    display_hands([], dealer_hand, True)
+    while calculate_hand_value(dealer_hand) < 17:
+        dealer_hand.append(deck.pop(random.randint(0, len(deck) - 1)))
+        print("Dealer hits and receives: " + dealer_hand[-1])
+        display_hands([], dealer_hand, True)
+    if calculate_hand_value(dealer_hand) > 21:
+        print("Dealer busts!")
+        return True
+    return False
 
 
