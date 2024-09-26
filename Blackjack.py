@@ -72,4 +72,35 @@ def dealer_turn(deck, dealer_hand):
 def is_bust(hand):
     return calculate_hand_value(hand) > 21
 
+def determine_winner(player_hand, dealer_hand):
+    player_value = calculate_hand_value(player_hand)
+    dealer_value = calculate_hand_value(dealer_hand)
+    if player_value == 21 or (player_value > dealer_value and not is_bust(player_hand)) or is_bust(dealer_hand):
+        return "Player wins!"
+    elif dealer_value > player_value and not is_bust(dealer_hand):
+        return "Dealer wins!"
+    else:
+        return "It's a tie!"
+
+print("Welcome to Blackjack!")
+print("Dealing cards...")
+deck = create_deck()
+random.shuffle(deck)
+player_hand, dealer_hand = deal_initial_cards(deck)
+display_hands(player_hand, dealer_hand)
+
+if player_turn(deck, dealer_hand):
+    print("Player busts, dealer wins!")
+display_hands(player_hand, dealer_hand, True)
+if  dealer_turn(deck, dealer_hand):
+    print("Dealer busts, player wins!")
+else:
+    display_hands(player_hand, dealer_hand, True)
+    result = determine_winner(player_hand, dealer_hand)
+    if "tie" not in result.lower():
+        print(result)
+    else:
+        print("It's a tie!")
+
+
 
