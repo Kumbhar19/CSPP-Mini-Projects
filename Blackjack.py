@@ -33,4 +33,16 @@ def calculate_hand_value(hand):
         value += 10
     return value
 
+def display_hands(player_hand, dealer_hand, reveal_dealer_card=False):
+    player_value = calculate_hand_value(player_hand)
+    player_hand_str = "Player's hand: " + ', '.join(dealer_hand)+ "(total: " + str(player_value) + ")"
+    print(player_hand_str)
+    if reveal_dealer_card:
+        dealer_value = calculate_hand_value(dealer_hand)
+        dealer_hand_str = "Dealer's hand: " + ', '.join(dealer_hand)+ "(total: " + str(dealer_value) + ")"
+        print(dealer_hand_str)
+    else:
+        dealer_hand_str = "Dealer's hand: " + dealer_hand[0] + ", [hidden]"
+        print(dealer_hand_str)
+
 
